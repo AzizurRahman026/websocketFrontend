@@ -1,0 +1,31 @@
+<div class="chat-container">
+    <!-- Left Panel: Connected Users -->
+    <div class="user-list">
+      <h3>Connected Users</h3>
+      <ul>
+        @for (user of Users; track $index) {
+            <li>{{user}}</li>
+        }
+      </ul>
+    </div>
+  
+    <!-- Right Panel: Chat Messages -->
+    <div class="chat-box">
+      <div class="messages">
+        @for (msg of messages; track $index) {
+            <div class="message">
+                <strong>{{ msg.user }}:</strong> {{ msg.message }}
+            </div>
+        }
+      </div>
+      <div class="message-input">
+        <input 
+          type="text" 
+          [(ngModel)]="newMessage" 
+          placeholder="Type your message here..." 
+        />
+        <button (click)="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+  
