@@ -12,4 +12,20 @@ export class ChatService {
   .build();//
 
   constructor() { }
+
+  // start connection
+  public async start() {
+    try {
+      await this.connection.start();
+    }
+    catch(error) {
+      console.log(error);
+    }
+
+    // Join Room
+
+    // Send Messages
+
+    // Leave Room
+  }
 }
