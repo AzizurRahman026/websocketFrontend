@@ -1,4 +1,8 @@
-<div class="chat-container">
+  <div class="chatHeader">
+    <p>Welcome to Live Chat</p>
+    <button (click)="leaveChat()">Leave Chat</button>
+  </div>
+  <div class="chat-container">
     <!-- Left Panel: Connected Users -->
     <div class="user-list">
       <h3>Connected Users</h3>
@@ -11,15 +15,23 @@
   
     <!-- Right Panel: Chat Messages -->
     <div class="chat-box">
-      <div class="messages">
+      <div class="message">
         @for (msg of messages; track $index) {
-            <div class="message">
-                <strong>{{ msg.user }}:</strong> {{ msg.message }}
-            </div>
+            @if (msg.user != loggedInUserName) {
+              <div class="logoutUserMessage">
+                  <strong>{{ msg.user }}:</strong> {{ msg.message }}
+              </div>
+            }
+            <!-- this is for message background color and designing... -->
+            @if (msg.user == loggedInUserName) {
+              <div class="loginUserMessage">
+                  <strong>{{ msg.user }}:</strong> {{ msg.message }}
+              </div>
+            }
         }
       </div>
       <div class="message-input">
-        <input 
+        <input (keydown.enter)="sendMessage()"
           type="text" 
           [(ngModel)]="newMessage" 
           placeholder="Type your message here..." 
